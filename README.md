@@ -1,21 +1,38 @@
-# Soroban Project
+# SAC Swap Mint Admin
+
+A Soroban smart contract that serves as a SAC (Stellar Asset Contract) admin, enabling token swaps by burning one asset and minting another.
+
+## Overview
+
+This contract accepts an "allow" asset and administers another SAC. Users can call `swap_mint` to convert their "allow" tokens into the administered asset at a 1:1 ratio.
+
+## Contract Functions
+
+- **Constructor**: Accepts `admin_asset` (the SAC this contract administers) and `allow_asset` (the SAC accepted for swapping)
+- **swap_mint(sender, amount)**: Transfers `amount` of allow asset from sender, burns it, then mints equivalent amount of admin asset to sender
 
 ## Project Structure
 
-This repository uses the recommended structure for a Soroban project:
 ```text
 .
 ├── contracts
-│   └── hello_world
-│       ├── src
-│       │   ├── lib.rs
-│       │   └── test.rs
-│       └── Cargo.toml
+│   └── sac-swap-mint-admin
+│       ├── src
+│       │   ├── lib.rs
+│       │   └── test.rs
+│       └── Cargo.toml
 ├── Cargo.toml
 └── README.md
 ```
 
-- New Soroban contracts can be put in `contracts`, each in their own directory. There is already a `hello_world` contract in there to get you started.
-- If you initialized this project with any other example contracts via `--with-example`, those contracts will be in the `contracts` directory as well.
-- Contracts should have their own `Cargo.toml` files that rely on the top-level `Cargo.toml` workspace for their dependencies.
-- Frontend libraries can be added to the top-level directory as well. If you initialized this project with a frontend template via `--frontend-template` you will have those files already included.
+## Building
+
+```bash
+cargo build --release
+```
+
+## Testing
+
+```bash
+cargo test
+```
